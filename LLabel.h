@@ -15,7 +15,7 @@ public:
 	}
 
 	int size() {
-		labels.size();
+		return labels.size();
 	}
 
 	bool labelIsAvailabelToIn(Label l) {
@@ -32,18 +32,33 @@ public:
 		for (int i = 0; i < labels.size(); ++i) {
 			if (!l.costs.dominate(labels[i].costs)) {
 				temp.push_back(labels[i]);
-			}
+			} /*else {
+				cout << "(" << labels[i].costs[0] << ", " << labels[i].costs[1] << ") was removed by " ;
+				cout << "(" << l.costs[0] << ", " << l.costs[1] << ")\n";
+			}*/
 		}
 
 		labels = temp;
 	}
 
+	//return the position where lable was inserted on the list
 	int add(Label l) {
 		if (labels.size() == 0) {
 			labels.push_back(l);
 			return 0;
-		} else if (labelIsAvailabelToIn(l)) {
+		} else {
 			removeAllDominated(l);
+			labels.push_back(l);
+			return labels.size() - 1;
+		}
+	}
+
+	int add(Label l, bool remove) {
+		if (labels.size() == 0) {
+			labels.push_back(l);
+			return 0;
+		} else {
+			if (remove) removeAllDominated(l);
 			labels.push_back(l);
 			return labels.size() - 1;
 		}
@@ -54,10 +69,14 @@ public:
 	}
 
 	bool isEmpty() {
-		return size() == 0;
+
+		return labels.size() == 0;
 	}
 
 	//In lexicografic order
+	/*
+	 * return the smaller label in lexicografical order, and idx on the list
+	 */
 	Label labelToVisit(int *idx) {
 		Label l = labels[0];
 		*idx = 0;
@@ -74,6 +93,13 @@ public:
 	}
 
 	void remove(int i) {
+		/*cout << "here\n";
+		cout << "i = " << i << "\n";
+		if (labels.size() != 0) {
+			cout << "REMOVED: \n";
+			Label l = labels[i];
+			cout << "(" << l.costs[0] << ", " << l.costs[1] << ")\n";
+		}*/
 		labels.erase(labels.begin() + i);
 	}
 

@@ -26,6 +26,16 @@ public:
 		this->idxOnListLabelParent = idxOnListLabelParent;
 	}
 
+	Label(vector<int> v, int parent, int idxOnListLabelParent) {
+
+		for (int i = 0; i < v.size(); ++i) {
+			costs.values.push_back(v[i]);
+		}
+
+		this->parent = parent;
+		this->idxOnListLabelParent = idxOnListLabelParent;
+	}
+
 	int operator[](int i) {
 		return costs[i];
 	}
@@ -36,7 +46,12 @@ public:
 			if (this->costs[i] < l2.costs[i]) return true;
 			return false;
 		}
-		return this->parent < l2.parent;
+
+		if (this->parent == l2.parent) {
+			return this->idxOnListLabelParent < l2.idxOnListLabelParent;
+		} else {
+			return this->parent < l2.parent;
+		}
 	}
 
 };

@@ -20,9 +20,17 @@ public:
 		}
 	}
 
+	Point(int n, int value) {
+		for (int i = 0; i < n; ++i) {
+			this->values.push_back(value);
+		}
+	}
+
 	int size() {
 		return values.size();
 	}
+
+	//bool equals
 
 	//minimização
 	//Não é pior que p em todos os objetivos
@@ -41,6 +49,7 @@ public:
 				return true;
 			}
 		}
+		return false;
 	}
 
 	//Este vetor domina p?
