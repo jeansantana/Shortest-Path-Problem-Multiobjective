@@ -82,45 +82,6 @@ bool AllTempListIsEmptyFrom1(LLabel verticesList[]) {
 	return true;
 }
 
-/*Label getFirstCandidate(LLabel temp[], int *idx, int *vId) {
-	for (int i = 0; i < n; ++i) {
-		//cout << "chek temp[i], i = " << i << endl;
-		if (temp[i].size() != 0) {
-			*vId = i;
-			return temp[i].labelToVisit(idx);
-		}
-		//cout << "cheked" << endl;
-	}
-	return Label();
-}*/
-
-/*Label getSmallerLexicografically(int *vId, LLabel temp[]) {
-	cout << "\n\nTemporário de " << 29 << endl;
-	printLLabel(temp[29]);
-	cout << "\n|\n|\n";
-	//percorrer todos os labels para achar o menor lexicograficamente
-	int idx;
-	Label menor = getFirstCandidate(temp, &idx, vId);
-	//cout << "Label Candidate (menor): "; printLabel(menor); cout << endl;
-	Label lAux;
-	for (int i = 1; i < n; ++i) {
-		if ( temp[i].size() > 0 ){
-			lAux = temp[i].labelToVisit(&idx);
-			if ( lAux < menor ) {
-				menor = lAux;
-				*vId = i;
-			} 
-		}
-	}
-
-	temp[*vId].remove(idx);
-
-	cout << "\nTemporário de " << 29 << endl;
-	printLLabel(temp[29]);
-	cout << "\nLabel menor: "; printLabel(menor);
-	return menor;
-}*/
-
 Label getSmallerLexicografically(int *vId, LLabel temp[]) {
 	vi l(m, INT_MAX);
 	Label menor(l, INT_MAX, INT_MAX);
